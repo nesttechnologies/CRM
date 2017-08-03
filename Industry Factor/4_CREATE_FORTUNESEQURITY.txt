@@ -1,0 +1,12 @@
+CREATE table FortuneSequrity
+(
+ID int IDENTITY (1,1) NOT NULL,
+CompanyID int NOT NULL,
+IndustryID int NOT NULL,
+SecureLevel int NOT NULL, 
+
+PRIMARY KEY (ID),
+FOREIGN KEY (CompanyID) REFERENCES Fortune500(ID),
+FOREIGN KEY (IndustryID) REFERENCES SecurityLEvel(ID)
+
+);
