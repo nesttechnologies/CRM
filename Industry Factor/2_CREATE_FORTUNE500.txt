@@ -1,7 +1,7 @@
 USE [CRM]
 GO
 
-/****** Object:  Table [dbo].[Fortune500]    Script Date: 8/2/2017 5:30:19 PM ******/
+/****** Object:  Table [dbo].[Fortune500]    Script Date: 8/3/2017 1:32:43 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -10,24 +10,29 @@ GO
 
 CREATE TABLE [dbo].[Fortune500](
 	[Rank] [float] NULL,
-	[Title] [nvarchar](255) NULL,
-	[Ticker] [nvarchar](255) NULL,
-	[Industry] [nvarchar](255) NULL,
-	[Sector] [nvarchar](255) NULL,
+	[Title] [nvarchar](50) NULL,
+	[Ticker] [nvarchar](50) NULL,
+	[Industry] [nvarchar](50) NULL,
+	[Sector] [nvarchar](50) NULL,
 	[Years on list] [float] NULL,
-	[CEO] [nvarchar](255) NULL,
+	[CEO] [nvarchar](50) NULL,
 	[EPS] [float] NULL,
 	[Employees] [float] NULL,
 	[Revenues] [float] NULL,
 	[Profits] [float] NULL,
 	[geoCode] [nvarchar](255) NULL,
 	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[IndustryID] [int] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
+GO
+
+ALTER TABLE [dbo].[Fortune500]  WITH CHECK ADD FOREIGN KEY([IndustryID])
+REFERENCES [dbo].[SecurityLevel] ([ID])
 GO
 
 
