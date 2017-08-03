@@ -1,0 +1,8 @@
+c:\users\office\documents\visual studio 2017\Projects\Cyber_Revenue_Model\Cyber_Revenue_Model\obj\Debug\Cyber_Revenue_Model.csprojResolveAssemblyReference.cache
+C:\Users\Office\Documents\Visual Studio 2017\Projects\Cyber_Revenue_Model\Cyber_Revenue_Model\bin\Debug\Cyber_Revenue_Model.exe.config
+C:\Users\Office\Documents\Visual Studio 2017\Projects\Cyber_Revenue_Model\Cyber_Revenue_Model\bin\Debug\Cyber_Revenue_Model.exe
+C:\Users\Office\Documents\Visual Studio 2017\Projects\Cyber_Revenue_Model\Cyber_Revenue_Model\bin\Debug\Cyber_Revenue_Model.pdb
+C:\Users\Office\Documents\Visual Studio 2017\Projects\Cyber_Revenue_Model\Cyber_Revenue_Model\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Office\Documents\Visual Studio 2017\Projects\Cyber_Revenue_Model\Cyber_Revenue_Model\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Office\Documents\Visual Studio 2017\Projects\Cyber_Revenue_Model\Cyber_Revenue_Model\obj\Debug\Cyber_Revenue_Model.exe
+C:\Users\Office\Documents\Visual Studio 2017\Projects\Cyber_Revenue_Model\Cyber_Revenue_Model\obj\Debug\Cyber_Revenue_Model.pdb
