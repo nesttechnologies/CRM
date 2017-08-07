@@ -1,0 +1,280 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using FusionCharts.Charts;
+using System.Text;
+using System.Data.Odbc;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using Newtonsoft.Json;
+
+namespace Charts001
+{
+    public partial class JSON1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //var a = CRM_DB.GetDBdata();
+
+            Chart sales = new Chart("bar2d", "myChart1", "600", "350", "jsonurl", "../Data/json.json"); // ../Data/Data.json
+            // Render the chart
+            Literal1.Text = sales.Render();
+
+            GetDataSource();
+            Chart sales2 = new Chart("angulargauge", "myChart2", "600", "350", "jsonurl", "../Data/json2.json"); // "../Data/json2.json"
+            // Render the chart
+            Literal2.Text = sales2.Render();
+            /*
+                        Chart sales3 = new Chart("pyramid", "myChart3", "600", "350", "jsonurl", "../Data/pyramid.json"); // ../Data/Data.json
+                        // Render the chart
+                        Literal3.Text = sales3.Render();
+                         */
+
+            Chart sales4 = new Chart("doughnut2d", "myChart4", "600", "350", "jsonurl", "../Data/don.json"); // ../Data/Data.json
+            // Render the chart
+            Literal4.Text = sales4.Render();
+
+            GetDataSource2();
+            GetDataSource3();
+            Chart sales3 = new Chart("stackedcolumn2d", "myChart3", "600", "350", "jsonurl", "../Data/treemap.json"); // ../Data/Data.json
+            // Render the chart
+            Literal3.Text = sales3.Render();
+
+               
+
+        }
+
+        protected void SearchData(object sender, EventArgs e)
+        {
+            Page_Load(null, null);
+        }
+
+        private string GetDataSource()//
+        {
+            var responseFromDb = "0";
+            if (Text1.Text != "")
+            {
+                responseFromDb = GetdataFromDb(Text1.Text);
+            }
+
+            var json2Path = @"C:\Users\Dariia\Documents\Visual Studio 2015\Projects\Charts001\Charts001\Data/json2.json";
+            //ozapros w bazu, poluczili otwet
+            //otkryli fail
+            JObject o1 = JObject.Parse(File.ReadAllText(json2Path));
+            //mieniajem znaczenie to czto tebe nożno 
+            o1["dials"]["dial"][0]["value"] = string.Format("{0}", responseFromDb);
+            //o1["categories"]["category"][0]["value"] = string.Format("{0}", responseFromDb);
+
+            // write JSON directly to a file
+            using (StreamWriter file = File.CreateText(json2Path))
+            using (JsonTextWriter writer = new JsonTextWriter(file))
+            {
+                o1.WriteTo(writer);
+            }
+            
+            return json2Path;
+        }
+
+        private string GetdataFromDb(string text)
+        {
+            string strQuery = @"SELECT sec.SecurLevel FROM Fortune500 As fort inner join
+                                SecurityLevel As sec ON fort.IndustryID = sec.ID WHERE fort.Title like '%'+ @industry + '%'";
+
+            SqlCommand cmd = new SqlCommand(strQuery);
+            cmd.Parameters.AddWithValue("@industry", text.Trim());
+            DataTable dt = GetData(cmd);
+            return dt?.Rows[0]?.ItemArray[0]?.ToString();
+        }
+
+        private DataTable GetData(SqlCommand cmd)
+        {
+            DataTable dt = new DataTable();
+            String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlDataAdapter sda = new SqlDataAdapter();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
+            try
+            {
+                con.Open();
+                sda.SelectCommand = cmd;
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+            finally
+            {
+                con.Close();
+                sda.Dispose();
+                con.Dispose();
+            }
+        }
+
+
+
+
+
+
+
+        private string GetDataSource2()//
+        {
+            var responseFromDb = "0";
+            if (Text1.Text != "")
+            {
+                responseFromDb = GetdataFromDb2(Text1.Text);
+            }
+            var json2Path = @"C:\Users\Dariia\Documents\Visual Studio 2015\Projects\Charts001\Charts001\Data/treemap.json";
+            //ozapros w bazu, poluczili otwet
+
+
+            //otkryli fail
+            JObject o1 = JObject.Parse(File.ReadAllText(json2Path));
+            //mieniajem znaczenie to czto tebe nożno 
+            o1["dataset"][0]["data"][0]["value"] = string.Format("{0}", responseFromDb);
+           // o1["categories"][0]["category"][0]["label"] = string.Format("{0}", responseFromDb);
+
+            // write JSON directly to a file
+            using (StreamWriter file = File.CreateText(json2Path))
+            using (JsonTextWriter writer = new JsonTextWriter(file))
+            {
+                o1.WriteTo(writer);
+            }
+
+            return json2Path;
+        }
+        private string GetdataFromDb2(string text)
+        {
+            string strQuery = @"SELECT sec.SecurLevel FROM Fortune500 As fort inner join
+                                SecurityLevel As sec ON fort.IndustryID = sec.ID WHERE fort.Title like '%'+ @industry + '%'";
+
+            //, sec.SecurIndustry
+
+            SqlCommand cmd = new SqlCommand(strQuery);
+            cmd.Parameters.AddWithValue("@industry", text.Trim());
+            DataTable dt = GetData2(cmd);
+            return dt?.Rows[0]?.ItemArray[0]?.ToString();
+        }
+
+        private DataTable GetData2(SqlCommand cmd)
+        {
+            DataTable dt = new DataTable();
+            String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlDataAdapter sda = new SqlDataAdapter();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
+            try
+            {
+                con.Open();
+                sda.SelectCommand = cmd;
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+            finally
+            {
+                con.Close();
+                sda.Dispose();
+                con.Dispose();
+            }
+        }
+
+
+
+
+
+
+
+
+
+        private string GetDataSource3()//
+        {
+            var responseFromDb = "0";
+            if (Text1.Text != "")
+            {
+                responseFromDb = GetdataFromDb3(Text1.Text);
+            }
+            var json2Path = @"C:\Users\Dariia\Documents\Visual Studio 2015\Projects\Charts001\Charts001\Data/treemap.json";
+            //ozapros w bazu, poluczili otwet
+
+
+            //otkryli fail
+            JObject o1 = JObject.Parse(File.ReadAllText(json2Path));
+            //mieniajem znaczenie to czto tebe nożno 
+           // o1["dataset"][0]["data"][0]["value"] = string.Format("{0}", responseFromDb);
+            o1["categories"][0]["category"][0]["label"] = string.Format("{0}", responseFromDb);
+
+            // write JSON directly to a file
+            using (StreamWriter file = File.CreateText(json2Path))
+            using (JsonTextWriter writer = new JsonTextWriter(file))
+            {
+                o1.WriteTo(writer);
+            }
+
+            return json2Path;
+        }
+        private string GetdataFromDb3(string text)
+        {
+            string strQuery = @"SELECT sec.SecurIndustry FROM Fortune500 As fort inner join
+                                SecurityLevel As sec ON fort.IndustryID = sec.ID WHERE fort.Title like '%'+ @industry + '%'";
+
+            //, sec.SecurIndustry
+
+            SqlCommand cmd = new SqlCommand(strQuery);
+            cmd.Parameters.AddWithValue("@industry", text.Trim());
+            DataTable dt = GetData3(cmd);
+            return dt?.Rows[0]?.ItemArray[0]?.ToString();
+        }
+
+        private DataTable GetData3(SqlCommand cmd)
+        {
+            DataTable dt = new DataTable();
+            String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlDataAdapter sda = new SqlDataAdapter();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
+            try
+            {
+                con.Open();
+                sda.SelectCommand = cmd;
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+            finally
+            {
+                con.Close();
+                sda.Dispose();
+                con.Dispose();
+            }
+        }
+
+    }
+}                
+        
+
+     

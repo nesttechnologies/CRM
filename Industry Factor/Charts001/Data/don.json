@@ -1,0 +1,54 @@
+{
+    "chart": {
+        "caption": "Split of Security Level",
+        "subcaption": "by Industry Factor",
+        "numberprefix": "%",
+        "startingangle": "310",
+        "decimals": "0",
+        "defaultcenterlabel": "Total security: %100",
+        "centerlabel": "Security from $label: $value",
+        "theme": "fint"
+    },
+    "data": [
+        {
+            "label": "Technology",
+            "value": "19"
+        },
+        {
+            "label": "Motor Vehicles & Parts",
+            "value": "19"
+        },
+        {
+            "label": "Aerospace & Defense",
+            "value": "16"
+        },
+        {
+            "label": "Telecommunications",
+            "value": "12"
+        },
+		{
+            "label": "Energy",
+            "value": "8"
+        },
+		{
+            "label": "Transportation",
+            "value": "8"
+        },
+		{
+            "label": "Engineering & Construction",
+            "value": "7"
+        },
+		{
+            "label": "Media",
+            "value": "5"
+        },
+		{
+            "label": "Retailing",
+            "value": "3"
+        },
+		{
+            "label": "Chemicals",
+            "value": "3"
+        }
+    ]
+}

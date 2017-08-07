@@ -1,0 +1,71 @@
+{
+    "chart": {
+        "caption": "Top 10 most targeted industries",
+        "subcaption": "Based on number of cyber attacks till last year",
+        "yaxisname": "Estimated level of attacks ",
+        "plotgradientcolor": "",
+        "rotatevalues": "0",
+        "divlinecolor": "#CCCCCC",
+        "showvalues": "1",
+        "valuefontbold": "1",
+        "yaxisnamefontsize": "12",
+        "labelsepchar": ": ",
+        "labeldisplay": "AUTO",
+        "numberscalevalue": "1,5,15,20",
+        "numberscaleunit": " ",
+        "animation": "0",
+        "theme": "zune"
+    },
+    "data": [
+        {
+            "label": "Technology",
+            "value": "9.5",
+            "tooltext": "Companies: {br}Apple{br}HP{br}IBM{br}Amazon.com"
+        },
+        {
+            "label": "Motor Vehicles & Parts",
+            "value": "9.5",
+            "tooltext": "Companies: {br}General Motors{br}Ford Motor{br}Johnson Controls{br}Paccar"
+        },
+        {
+            "label": "Aerospace & Defense",
+            "value": "8",
+            "tooltext": "Companies: {br}Boeing{br}United Technologies{br}Lockheed Martin{br}General Dynamics"
+        },
+        {
+            "label": "Telecommunications",
+            "value": "6",
+            "tooltext": "Companies: {br}AT&T{br}Verizon{br}Comcast{br}DirecTV"
+        },
+        {
+            "label": "Energy",
+            "value": "4",
+            "tooltext": "Companies: {br}Exxon Mobil{br}Chevron{br}Phillips 66{br}Valero Energy"
+        },
+        {
+            "label": "Transportation",
+            "value": "4",
+            "tooltext": "Companies: {br}UPS{br}FedEx{br}American Airlines Group{br}Delta Air Lines"
+        },
+        {
+            "label": "Engineering & Construction",
+            "value": "3.5",
+            "tooltext": "Companies: {br}Fluor{br}Jacobs Engineering Group{br}Peter Kiewit Sonsâ€™{br}AECOM"
+        },
+        {
+            "label": "Media",
+            "value": "2.5",
+            "tooltext": "Companies: {br}Walt Disney{br}Twenty-First Century Fox{br}Time Warner{br}CBS"
+        },
+        {
+            "label": "Retailing",
+            "value": "1.5",
+            "tooltext": "Companies: {br}Walmart{br}Costco{br}Home Depot{br}Target"
+        },
+        {
+            "label": "Chemicals",
+            "value": "1.5",
+            "tooltext": "Companies: {br}Dow Chemical{br}DuPont{br}Monsanto{br}PPG Industries"
+        }
+    ]
+}
