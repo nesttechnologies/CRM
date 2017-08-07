@@ -1,82 +1,126 @@
-using HtmlAgilityPack;
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
+using System.Collections;
+using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
+using System.Collections.Generic;
 using System.Linq;
-using System.Net;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using FusionCharts.Charts;
 using System.Text;
-using System.Threading.Tasks;
+using System.Data.Odbc;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using Newtonsoft.Json;
 
-namespace CRM
+namespace Charts001
 {
-    class Program
+    public partial class JSON1 : System.Web.UI.Page
     {
-        static void Main(string[] args)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            GetDBdata();
-            Console.WriteLine();
-            Console.ReadKey();
-       
+            var a = CRM_DB.GetDBdata();
+
+            Chart sales = new Chart("bar2d", "myChart1", "600", "350", "jsonurl", "../Data/json.json"); // ../Data/Data.json
+            // Render the chart
+            Literal1.Text = sales.Render();
+
+            GetDataSource();
+            Chart sales2 = new Chart("angulargauge", "myChart2", "600", "350", "jsonurl", "../Data/json2.json"); // "../Data/json2.json"
+            // Render the chart
+            Literal2.Text = sales2.Render();
+            /*
+                        Chart sales3 = new Chart("pyramid", "myChart3", "600", "350", "jsonurl", "../Data/pyramid.json"); // ../Data/Data.json
+                        // Render the chart
+                        Literal3.Text = sales3.Render();
+                         */
+
+            Chart sales4 = new Chart("doughnut2d", "myChart4", "600", "350", "jsonurl", "../Data/don.json"); // ../Data/Data.json
+            // Render the chart
+            Literal4.Text = sales4.Render();
+
+
+            Chart sales3 = new Chart("stackedcolumn2d", "myChart3", "600", "350", "jsonurl", "../Data/treemap.json"); // ../Data/Data.json
+            // Render the chart
+            Literal3.Text = sales3.Render();
+
+               
+
         }
 
-        //receive data from SQL Server -> store data as the model 
-        public static IList<IndustrySequrModel> GetDBdata()
+        protected void SearchData(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(@"Server= LAPTOP-JDV1D5J5\SQLEXPRESS; Database=CRM; User Id=sa; Password = 1234;");
-            conn.Open();
-            string querySelect = @"SELECT fort.ID, fort.Title, fort.Industry, fort.Sector, sec.SecurLevel FROM Fortune500 As fort, SecurityLevel As sec
-                                     WHERE fort.INDUSTRYID = sec.ID";
-       
-            SqlCommand cmd = new SqlCommand(querySelect, conn);
-            cmd.ExecuteNonQuery();
-
-            // create data adapter
-            SqlDataAdapter dataAdapt = new SqlDataAdapter(cmd);
-
-            //query your database and return the result to your datatable
-            DataTable dataTable = new DataTable();
-            dataAdapt.Fill(dataTable);
-
-            conn.Close();
-            dataAdapt.Dispose();
-
-            var industrySec = dataTable.MapTableToList<IndustrySequrModel>();
-            Console.WriteLine("Data Received Successfully");
-            return industrySec;
+            Page_Load(null, null);
         }
-    }
-
-    //Class Model in which data from SQL will be store 
-    public class IndustrySequrModel
-    {
-        public int ID { get; set; }
-        public string Title { get; set; }
-        public string Industry { get; set; }
-        public string Sector { get; set; }
-        public int SecurLevel { get; set; }
-    }
-
-
-    public static class ExtensionMethods
-    {
-        public static List<T> MapTableToList<T>(this DataTable table) where T : new()
+        private string GetDataSource()//
         {
-            List<T> result = new List<T>();
-            var Type = typeof(T);
-
-            foreach (DataRow row in table.Rows)
+            var responseFromDb = "0";
+            if (Text1.Text != "")
             {
-                T item = new T();
-                foreach (var property in Type.GetProperties())
-                {
-                    property.SetMethod.Invoke(item, new object[] { row[table.Columns[property.Name]] });
-                }
-                result.Add(item);
+                responseFromDb = GetdataFromDb(Text1.Text);
             }
+            var json2Path = @"C:\Users\Dariia\Documents\Visual Studio 2015\Projects\Charts001\Charts001\Data/json2.json";
+            //ozapros w bazu, poluczili otwet
 
-            return result;
+
+            //otkryli fail
+            JObject o1 = JObject.Parse(File.ReadAllText(json2Path));
+            //mieniajem znaczenie to czto tebe nożno 
+            o1["dials"]["dial"][0]["value"] = string.Format("{0}", responseFromDb);
+
+            // write JSON directly to a file
+            using (StreamWriter file = File.CreateText(json2Path))
+            using (JsonTextWriter writer = new JsonTextWriter(file))
+            {
+                o1.WriteTo(writer);
+            }
+            
+            return json2Path;
+        }
+
+        private string GetdataFromDb(string text)
+        {
+            string strQuery = @"SELECT sec.SecurLevel FROM Fortune500 As fort inner join
+                                SecurityLevel As sec ON fort.IndustryID = sec.ID WHERE fort.Title like '%'+ @industry + '%'";
+
+            SqlCommand cmd = new SqlCommand(strQuery);
+            cmd.Parameters.AddWithValue("@industry", text.Trim());
+            DataTable dt = GetData(cmd);
+            return dt?.Rows[0]?.ItemArray[0]?.ToString();
+        }
+
+        private DataTable GetData(SqlCommand cmd)
+        {
+            DataTable dt = new DataTable();
+            String strConnString = System.Configuration.ConfigurationManager.ConnectionStrings["conString"].ConnectionString;
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlDataAdapter sda = new SqlDataAdapter();
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = con;
+            try
+            {
+                con.Open();
+                sda.SelectCommand = cmd;
+                sda.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+            finally
+            {
+                con.Close();
+                sda.Dispose();
+                con.Dispose();
+            }
         }
     }
-}
+}                
