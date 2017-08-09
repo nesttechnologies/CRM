@@ -36,7 +36,7 @@ for(company in fiveHFortune[,1]){
         subsidiaryData<-wikiTable[[1]][rowNumber,2]
         #get the numbers of subsidiaries
         if(subsidiaryData == "List of subsidiaries"){
-          subsidiaryCount= -99
+          subsidiaryCount= 99
           #mydata <- rbind(mydata,c(company_name, as.character(subsidiaryCount)))
           y=append(y,subsidiaryCount)
         }
@@ -54,41 +54,9 @@ for(company in fiveHFortune[,1]){
         #mydata <- rbind(mydata,c(company_name, as.character(subsidiaryCount)))
         y=append(y,subsidiaryCount)
       }
-    }
-
-  if(subsidiaryCount>=0 && subsidiaryCount<3){
-    cyberResilience = append(cyberResilience, 10)
   }
-  else if(subsidiaryCount>=3 && subsidiaryCount<6){
-    cyberResilience = append(cyberResilience, 9)
-  }
-  else if(subsidiaryCount>=6 && subsidiaryCount<10){
-    cyberResilience = append(cyberResilience, 8)
-  }
-  else if(subsidiaryCount>=10 && subsidiaryCount<15){
-    cyberResilience = append(cyberResilience, 7)
-  }
-  else if(subsidiaryCount>=15 && subsidiaryCount<21){
-    cyberResilience = append(cyberResilience, 6)
-  }
-  else if(subsidiaryCount>=21 && subsidiaryCount<28){
-    cyberResilience = append(cyberResilience, 5)
-  }
-  else if(subsidiaryCount>=28 && subsidiaryCount<36){
-    cyberResilience = append(cyberResilience, 4)
-  }
-  else if(subsidiaryCount>=36 && subsidiaryCount<45){
-    cyberResilience = append(cyberResilience, 3)
-  }
-  else if(subsidiaryCount>=45 && subsidiaryCount<55){
-    cyberResilience = append(cyberResilience, 2)
-  }
-  else if(subsidiaryCount>=56){
-    cyberResilience = append(cyberResilience, 1)
-  }
-  else{
-    cyberResilience = append(cyberResilience, -1)
-  }
+  #y = 5.488* x + 0.357
+  cyberResilience = append(cyberResilience, (5.488/(0.38+0.15*subsidiaryCount)+0.357))
 }
 mydata = data.frame(x, y,cyberResilience)
 colnames(mydata)[colnames(mydata) == 'x'] <- 'CompanyName'
