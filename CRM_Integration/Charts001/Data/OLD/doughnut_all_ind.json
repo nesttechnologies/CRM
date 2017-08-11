@@ -1,0 +1,98 @@
+{
+    "chart": {
+        "caption": "Split of Security Level",
+        "subcaption": "by Industry Factor Resilience",
+        "numberprefix": "%",
+        "startingangle": "310",
+        "decimals": "0",
+        "defaultcenterlabel": "Total security: %100",
+        "centerlabel": "Security from $label: $value",
+        "theme": "fint"
+    },
+    "data": [
+        {
+            "label": "Motor Vehicles & Parts",
+            "value": "0.35"
+        },
+        {
+            "label": "Technology",
+            "value": "0.35"
+        },
+        {
+            "label": "Aerospace & Defense",
+            "value": "1.4"
+        },
+        {
+            "label": "Telecommunications",
+            "value": "2.81"
+        },
+		{
+            "label": "Energy",
+            "value": "4.21"
+        },
+		{
+            "label": "Transportation",
+            "value": "4.21"
+        },
+		{
+            "label": "Engineering & Construction",
+            "value": "4.56"
+        },
+		{
+            "label": "Industrials",
+            "value": "4.56"
+        },
+		{
+            "label": "Media",
+            "value": "5.26"
+        },
+		{
+            "label": "Apparal",
+            "value": "5.96"
+        },
+		{
+            "label": "Business Services",
+            "value": "5.96"
+        },
+		{
+            "label": "Chemicals",
+            "value": "5.96"
+        },
+		{
+            "label": "Financials",
+            "value": "5.96"
+        },
+		{
+            "label": "Food & Drug Stores",
+            "value": "5.96"
+        },
+		{
+            "label": "Food, Beverages & Tobacco",
+            "value": "5.96"
+        },
+		{
+            "label": "Hotels, Resturants & Leisure",
+            "value": "5.96"
+        },
+		{
+            "label": "Household Products",
+            "value": "5.96"
+        },
+		{
+            "label": "Materials",
+            "value": "5.96"
+        },
+		{
+            "label": "Retailing",
+            "value": "5.96"
+        },
+		{
+            "label": "Health Care",
+            "value": "6.32"
+        },
+		{
+            "label": "Wholesalers",
+            "value": "6.32"
+        }	
+    ]
+}

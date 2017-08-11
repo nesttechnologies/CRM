@@ -1,0 +1,72 @@
+{
+    "chart": {
+        "caption": "Top 10 most hacked industries",
+        "subcaption": "Industries with lowest resilience", 
+        "yaxisname": "Estimated level of attacks ",
+        "plotgradientcolor": "",
+        "rotatevalues": "0",
+        "divlinecolor": "#CCCCCC",
+        "showvalues": "1",
+        "valuefontbold": "1",
+        "yaxisnamefontsize": "12",
+        "labelsepchar": ": ",
+        "labeldisplay": "AUTO",
+        "numberscalevalue": "1,5,15,20",
+        "numberscaleunit": " ",
+        "animation": "0", 
+        "theme": "zune"
+    },
+    "data": [
+		{
+            "label": "Technology",
+            "value": "1",
+            "tooltext": "Companies: {br}Apple{br}HP{br}IBM{br}Amazon.com"
+        },
+		{
+            "label": "Financials",
+            "value": "2",
+            "tooltext": "Companies: {br}Berkshire Hathaway{br}General Electric{br}Fannie Mae{br}JP Morgan Chase"
+        },
+        
+        {
+            "label": "Materials",
+            "value": "3",
+            "tooltext": "Companies: {br}International Paper{br}Alcoa{br}Nucor{br}United States Steel"
+        },
+        {
+            "label": "Retailing",
+            "value": "3",
+            "tooltext": "Companies: {br}Walmart{br}Costco{br}Home Depot{br}Target"
+        },
+		{
+            "label": "Health Care",
+            "value": "3",
+            "tooltext": "Companies: {br}McKesson{br}AmerisourceBergen{br}Cardinal Health{br}Sysco"
+        },
+		{
+            "label": "Food, Beverages & Tobacco",
+            "value": "3",
+            "tooltext": "Companies: {br}Archer Daniels Midland{br}PepsiCo{br}Coca-Cola{br}CHS"
+        },
+		{
+            "label": "Food & Drug Stores",
+            "value": "4",
+            "tooltext": "Companies: {br}CVS Health{br}Kroger{br}Walgreens{br}Safeway"
+        },
+        {
+            "label": "Energy",
+            "value": "4.5",
+            "tooltext": "Companies: {br}Exxon Mobil{br}Chevron{br}Phillips 66{br}Valero Energy"
+        },
+        {
+            "label": "Transportation",
+            "value": "5",
+            "tooltext": "Companies: {br}UPS{br}FedEx{br}American Airlines Group{br}Delta Air Lines"
+        },
+        {
+            "label": "Wholesalers",
+            "value": "5",
+            "tooltext": "Companies: {br}McKesson{br}AmerisourceBergen{br}Cardinal Health{br}Sysco"
+        }
+    ]
+}

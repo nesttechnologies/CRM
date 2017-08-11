@@ -1,0 +1,78 @@
+ {
+    "chart": {
+        "caption": "CRI for",
+		"subCaption": "10 Samples with +/-5 ranks of Apple_Inc",
+        "xAxisName": "Company",
+        "yAxisName": "Cyber Resilience",
+        "lineThickness": "2",
+        "paletteColors": "#0075c2",
+        "baseFontColor": "#333333",
+        "showvalues": "0",
+        "plotgradientcolor": "",
+        "canvasbgalpha": "0",
+        "plotborderalpha": "0",
+		"canvasBgColor":"#666666",
+        "canvasborderalpha": "0",
+        "showborder": "0",
+        "showalternatehgridcolor": "0",
+        "rotatelabels": "1",
+        "slantlabels": "1",
+		"bgColor":"000000",
+		"baseFontColor" : "#FFFFFF",
+        "captionpadding": "20",
+        "tooltipbgcolor": "138dd7",
+        "tooltipcolor": "ffffff",
+        "tooltipbordercolor": "138dd7",
+        "showtooltipshadow": "0",
+        "palettecolors": "5167c7",
+		"divlinecolor":"#CCCCCC"
+    },
+       "data": [
+  {
+    "label": "Berkshire_Hathaway",
+    "value": 0.71
+  },
+  {
+    "label": "Lockheed_Martin",
+    "value": 1.91
+  },
+  {
+    "label": "Walmart",
+    "value": 2.23
+  },
+  {
+    "label": "Caterpillar_Inc",
+    "value": 3.83
+  },
+   {
+    "label": "Sears_Holdings",
+    "value": 4.64
+  },
+   {
+    "label": "Apple_Inc",
+    "value": 4.64,
+	"color": "#cb1126"
+  },
+    {
+    "label": "Omnicom_Group",
+    "value": 5.96
+  },
+  {
+    "label": "Netflix",
+    "value": 6.97
+  },
+  {
+    "label": "PayPal",
+    "value": 8.42
+  },
+   {
+    "label": "Best_Buy",
+    "value": 8.42
+  },
+  {
+    "label": "Alaska_Air_Group",
+    "value": 8.43
+  }
+
+]
+}
